@@ -1,0 +1,94 @@
+package college;
+import java.util.Scanner; // Importing Scanner class for user input
+
+/*---------- Class for Character-based operations -------------*/
+class StringCharacterOperation {
+
+    /*--- Method to count number of uppercase characters ---*/
+    public static int countUpperCase(String sentence) {
+        int upper = 0; // Count of uppercase characters
+        for (int i = 0; i < sentence.length(); i++) {
+            char ch = sentence.charAt(i);
+            if (ch >= 'A' && ch <= 'Z') {
+                upper++;
+            }
+        }
+        return upper;
+    }
+
+    /*--- Method to count number of lowercase characters ---*/
+    public static int countLowerCase(String sentence) {
+        int lower = 0;
+        for (int i = 0; i < sentence.length(); i++) {
+            char ch = sentence.charAt(i);
+            if (ch >= 'a' && ch <= 'z') {
+                lower++;
+            }
+        }
+        return lower;
+    }
+
+    /*--- Method to count number of alphabets in the given string ----*/
+    public static int countAlphabet(String sentence) {
+        return countUpperCase(sentence) + countLowerCase(sentence);
+    }
+
+    /*--- Method for counting number of special characters ----*/
+    public static int countSpecialChars(String sentence) {
+        return sentence.length() - countAlphabet(sentence);
+    }
+
+    /*--- Method to count number of vowels ---*/
+    public static int countVowels(String sentence) {
+        int vowels = 0;
+        for (int i = 0; i < sentence.length(); i++) {
+            char ch = Character.toLowerCase(sentence.charAt(i));
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                vowels++;
+            }
+        }
+        return vowels;
+    }
+
+    /*--- Method to count number of consonants ---*/
+    public static int countConsonants(String sentence) {
+        int alphabets = countAlphabet(sentence);
+        int vowels = countVowels(sentence);
+        return alphabets - vowels;
+    }
+}
+
+/*-------- Main class ----------------------*/
+public class Stringoperation {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter any sentence: ");
+        String sentence = sc.nextLine();
+
+        if (sentence == null || sentence.isEmpty()) {
+            System.out.println("Please enter a valid sentence.");
+            sc.close();
+            return;
+        }
+
+        System.out.println("\n------------------------------------------------------");
+        System.out.println("Total Number of Characters: " + sentence.length());
+        System.out.println("------------------------------------------------------");
+        System.out.println("Total Number of Uppercase Characters: " + StringCharacterOperation.countUpperCase(sentence));
+        System.out.println("------------------------------------------------------");
+        System.out.println("Total Number of Lowercase Characters: " + StringCharacterOperation.countLowerCase(sentence));
+        System.out.println("------------------------------------------------------");
+        System.out.println("Total Number of Alphabets: " + StringCharacterOperation.countAlphabet(sentence));
+        System.out.println("------------------------------------------------------");
+        System.out.println("Total Number of Vowels: " + StringCharacterOperation.countVowels(sentence));
+        System.out.println("------------------------------------------------------");
+        System.out.println("Total Number of Consonants: " + StringCharacterOperation.countConsonants(sentence));
+        System.out.println("------------------------------------------------------");
+        System.out.println("Total Number of Special Characters: " + StringCharacterOperation.countSpecialChars(sentence));
+        System.out.println("------------------------------------------------------");
+
+        sc.close();
+    }
+}
